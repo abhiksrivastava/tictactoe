@@ -100,3 +100,21 @@ while [ $movecount -le $TOTALCOUNT ]
 do
 		checkEmptyCell
 done
+}
+function computer_win_check()
+{
+	for (( num=1; num<=3; num++ ))
+	do
+		for (( num_in=1; num_in<=3; num_in++ ))
+		do
+#........Horizontal...........................................................................................................................
+			if [[ ${board[$i,$j]} == "-" && ${board[$i,$(( $j + 1 ))]} == $computer && {board[$i,$(( $j + 2 ))]} == $computer ]]
+			then
+				board[$i,$j]=$computer
+			elif [[ ${board[$i,$j]} == $computer && ${board[$i,$(( $j + 1 ))]} == "-" && {board[$i,$(( $j + 2 ))]} == $computer ]]
+			then
+				board[$i,$(( $j + 1 ))]=$computer
+			elif [[ ${board[$i,$j]} == $computer && ${board[$i,$(( $j + 1 ))]} == $computer && {board[$i,$(( $j + 2 ))]} == "-" ]]
+			then
+				board[$i,$(( $j + 2 ))]=$computer
+			fi
