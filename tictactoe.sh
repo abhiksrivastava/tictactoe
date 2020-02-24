@@ -152,3 +152,12 @@ function computer_win_check()
 			fi
 		done
 	done
+}
+
+function tie_game()
+{
+	if [[ $movecount -eq $TOTALCOUNT ]]
+	then
+		echo "MATCH TIE!!!"
+		exit
+	
