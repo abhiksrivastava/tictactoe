@@ -161,3 +161,41 @@ function tie_game()
 		echo "MATCH TIE!!!"
 		exit
 	
+function player_turn()
+{
+	echo "-------------------------------------------------------PLAYER TURN--------------------------------------------------------------------"
+	read -p "Enter row: " row
+	read -p "Enter column: " column
+	if [[ ${board[$row,$column]} == "-" ]]
+	then
+		board[$row,$column]=$player
+		((movecount++))
+		display_board
+		echo "@ $ @ $ @ $ @ $ @ $ @ $ @ $ @ $ @ $ @ $ @ $ @ $ @ $ @ $ @ $ @ $ @ $ @ $ @ $ @ $ @ $ @ $ @ $ @ $ @ $ @ $ @ $ @ $ @ $ @ $ @ $ @ $ @ $"
+		checkWin
+		computer_turn
+	else
+		echo "Position Occupied or Invalid Position for user"
+		tie_game
+		player_turn
+	fi
+}
+function computer_turn()
+{
+	echo "--------------------------------------------------------COMPUTER TURN-----------------------------------------------------------------"
+	row=$(( ( RANDOM % 3 ) + 1 ))
+	column=$(( ( RANDOM % 3 ) + 1 ))
+		if [[ ${board[$row,$column]} == "-" ]]
+		then
+			board[$row,$column]=$computer
+			((movecount++))
+			display_board
+			checkWin
+			computer_win_check
+			
+			player_turn
+		else
+			echo "Position Occupied"
+			tie_game
+			computer_turn
+		fi
