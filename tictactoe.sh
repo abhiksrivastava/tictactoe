@@ -43,17 +43,6 @@ function toss()
 		echo "Computer has won the toss"
 	fi
 }
-
-function display_board()
-{
-	for(( num=1; num<=3;  num++ ))
-	do
-		for(( num_in=1; num_in<=3; num_in++ ))
-		do
-			board[$num,$num_in]=""
-		done
-	done
-}
 function value()
 {
 	#player=1
@@ -79,8 +68,35 @@ function toss()
 		echo "Computer has won the toss"
 	fi
 }
+unction display_board()
+{
+        for(( num=1; num<=3;  num++ ))
+        do
+                for(( num_in=1; num_in<=3; num_in++ ))
+                do
+                        board[$num,$num_in]=""
+                done
+        done
 
+function checkEmptyCell()
+{
+	read -p "Enter row: " row
+	read -p "Enter column: " column
+	
+	if [ ${board[$row,$column]} == "-" ]
+	then
+		board[$row,$column]=$player
+		((movecount++))
+		display_board
+	else
+		echo "Position Occupied or Invalid Position"
+	fi
+}
 
-display_board
-value
-toss
+assign_symbol
+reset_board
+
+while [ $movecount -le $TOTALCOUNT ]
+do
+		checkEmptyCell
+done
