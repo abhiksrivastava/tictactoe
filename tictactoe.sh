@@ -16,3 +16,33 @@ function display_board()
 		done
 	done
 }
+function value()
+{
+	#player=1
+	#computer=0
+	if [ $check -eq 1 ]
+	then
+		player="X"
+		computer="0"
+	else
+		player="0"
+		computer="X"
+	fi
+}
+
+function toss()
+{
+	#player=1
+	#computer=0
+	if [ $check -eq 1 ]
+	then
+		echo "Player has won the toss"
+	else
+		echo "Computer has won the toss"
+	fi
+}
+
+
+display_board
+value
+toss
