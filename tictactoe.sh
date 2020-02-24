@@ -118,3 +118,37 @@ function computer_win_check()
 			then
 				board[$i,$(( $j + 2 ))]=$computer
 			fi
+                        if [[ ${board[$j,$i]} == "-" && ${board[$(( $j + 1 )),$i]} == $computer && ${board[$(( $j + 2 )),$i]} == $computer ]]
+			then
+				board[$j,$i]=$computer
+			elif [[ ${board[$j,$i]} == $computer && ${board[$(( $j + 1 )),$i]} == "-" && ${board[$(( $j + 2 )),$i]} == $computer ]]
+			then
+				board[$(( $j + 1 )),$i]=$computer
+			elif [[ ${board[$j,$i]} == $computer && ${board[$(( $j + 1 )),$i]} == $computer && ${board[$(( $j + 2 )),$i]} == "-" ]]
+			then
+				board[$(( $j + 2 )),$i]=$computer
+			fi
+#........Diagonal1.............................................................................................................................
+			if [[ ${board[$i,$j]} == "-" && ${board[$(( $i + 1 )),$(( $j + 1 ))]} == $computer && ${board[$(( $i + 2 )),$(( $j + 2 ))]} == $computer ]]
+			then
+				board[$i,$j]=$computer
+			elif [[ ${board[$i,$j]} == $computer && ${board[$(( $i + 1 )),$(( $j + 1 ))]} == "-" && ${board[$(( $i + 2 )),$(( $j + 2 ))]} == $computer ]]
+			then
+				board[$(( $i + 1 )),$(( $j + 1 ))]}=$computer
+			elif [[ ${board[$i,$j]} == $computer && ${board[$(( $i + 1 )),$(( $j + 1 ))]} == $computer && ${board[$(( $i + 2 )),$(( $j + 2 ))]} == "-" ]]
+			then
+				board[$(( $i + 2 )),$(( $j + 2 ))]=$computer
+			fi
+#........Diagonal2.............................................................................................................................
+			if [[ ${board[$i,$(( $j + 2 ))]} == "-" && ${board[$(( $i + 1 )),$(( $j + 1 ))]} == $computer && ${board[$(( $i + 2 )),$j]} == $computer ]]
+			then
+				board[$i,$j]=$computer
+			elif [[ ${board[$i,$(( $j + 2 ))]} == $computer && ${board[$(( $i + 1 )),$(( $j + 1 ))]} == "-" && ${board[$(( $i + 2 )),$j]} == $computer ]]
+			then
+				board[$(( $i + 1 )),$(( $j + 1 ))]=$computer
+			elif [[ ${board[$i,$(( $j + 2 ))]} == $computer && ${board[$(( $i + 1 )),$(( $j + 1 ))]} == $computer && ${board[$(( $i + 2 )),$j]} == "-" ]]
+			then
+				board[$i,$j]=$computer
+			fi
+		done
+	done
