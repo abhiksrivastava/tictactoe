@@ -199,3 +199,12 @@ function computer_turn()
 			tie_game
 			computer_turn
 		fi
+}
+
+assign_symbol
+reset_board
+
+while [[ $movecount -ne $TOTALCOUNT ]]
+do
+	computer_turn
+done
